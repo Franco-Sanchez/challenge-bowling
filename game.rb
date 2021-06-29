@@ -17,21 +17,31 @@ class Game
 
       @players[name] = { rounds: [], completed: false } if @players[name].nil?
 
-      unless @players[name][:completed]
-        if @players[name][:rounds].empty?
-          @players[name][:rounds].push([point])
-        else
-          last_round = @players[name][:rounds].last
-          if @players[name][:rounds].rindex(last_round) == 9
-            validate_last_round(last_round)
-          else
-            add_new_values(@players[name][:rounds], last_round)
-          end
-        end
-      end
+      validate_completed(@players[name], @players[name][:rounds], point)
     end
 
     p @players
+  end
+
+  private
+
+  def validate_completed(player, rounds, point)
+    return if player[:completed]
+
+    if rounds.empty?
+      rounds.push([point])
+    else
+      if_not_empty(player, rounds, point)
+    end
+  end
+
+  def if_not_empty(player, rounds, point)
+    last_round = rounds.last
+    if rounds.rindex(last_round) == 9
+      add_last_round(player, last_round, point)
+    else
+      add_new_rounds(rounds, last_round, point)
+    end
   end
 end
 
