@@ -4,7 +4,14 @@ module Utils
   end
 
   def add_new_rounds(rounds, last_round, point)
-    last_round[0] == 10 || last_round.length == 2 ? rounds.push([point]) : last_round.push(point)
+    if last_round[0] == 10 && last_round.length == 1
+      last_round.push('')
+      rounds.push([point])
+    elsif last_round.length == 2
+      rounds.push([point])
+    else
+      last_round.push(point)
+    end
   end
 
   def add_last_round(player, last_round, point)

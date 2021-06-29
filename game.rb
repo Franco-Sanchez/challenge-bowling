@@ -1,4 +1,5 @@
 require_relative 'utils'
+require_relative 'prompts'
 
 class Game
   include Utils
@@ -20,7 +21,7 @@ class Game
       validate_completed(@players[name], @players[name][:rounds], point)
     end
 
-    p @players
+    Prompts.new.print_table(@players)
   end
 
   private
