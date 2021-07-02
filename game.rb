@@ -16,7 +16,7 @@ class Game
       point = 0 if point == 'F'
       next if point.negative? || point > 10
 
-      @players[name] = { rounds: [], completed: false } if @players[name].nil?
+      @players[name] = { rounds: [], score: [], completed: false } if @players[name].nil?
 
       validate_completed(@players[name], @players[name][:rounds], point)
     end

@@ -5,7 +5,7 @@ module Utils
 
   def add_new_rounds(rounds, last_round, point)
     if last_round[0] == 10 && last_round.length == 1
-      last_round.push('')
+      last_round.push(0)
       rounds.push([point])
     elsif last_round.length == 2
       rounds.push([point])
